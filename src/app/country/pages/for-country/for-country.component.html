@@ -2,39 +2,31 @@
 <hr>
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="search()" autocomplete="off">
-            <input type="text" name="termino" class="form-control" [(ngModel)]="termino" placeholder="Buscar país...">
-        </form>
+        <app-country-input placeholder="Buscar país..." (onEnter)="search($event)" (onDebounce)="seguerencias($event)">
+        </app-country-input>
     </div>
 </div>
+
+<ul *ngIf="showSuje" class="list-group">
+    <li *ngFor="let country of countrySugList" class="list-group-item list-group-item-action">
+        <a class="nav-link" [routerLink]="['/pais', country.alpha2Code ]">
+            {{country.name}}
+        </a>
+    </li>
+    <li class="list-group-item list-group-item-action" (click)="searchSug(termino)">
+        <a class="nav-link">
+            Buscar {{termino}}
+        </a>
+    </li>
+</ul>
+
 <hr>
 <div *ngIf="doError" class="alert alert-danger">
     No se encontro nada con el termino
 </div>
 
-<div class="row">
+<div *ngIf="countriesList.length > 0" class="row">
     <div class="col">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Bandera</th>
-                    <th>Nombre</th>
-                    <th>Población</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Bandera</td>
-                    <td>Nombre</td>
-                    <td>121213</td>
-                    <td>
-                        <a href="#">Ver...</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <app-country-table [countries]="countriesList"></app-country-table>
     </div>
 </div>

@@ -1,1 +1,19 @@
 <h1>Por Capital</h1>
+<hr>
+<div class="row">
+    <div class="col">
+        <app-country-input placeholder="Buscar capital..." (onEnter)="search($event)"
+            (onDebouce)="seguerencias($event)">
+        </app-country-input>
+    </div>
+</div>
+<hr>
+<div *ngIf="doError" class="alert alert-danger">
+    No se encontro nada con el termino
+</div>
+
+<div *ngIf="countriesList.length > 0" class="row">
+    <div class="col">
+        <app-country-table [countries]="countriesList"></app-country-table>
+    </div>
+</div>
