@@ -1,11 +1,15 @@
-<H1>Por País</H1>
-<hr>
-<div class="row">
-    <div class="col">
-        <app-country-input placeholder="Buscar país..." (onEnter)="search($event)" (onDebounce)="seguerencias($event)">
-        </app-country-input>
+<div class="animate__animated animate__fadeIn animate__faster">
+    <H1>Por País</H1>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <app-country-input placeholder="Buscar país..." (onEnter)="search($event)"
+                (onDebounce)="seguerencias($event)">
+            </app-country-input>
+        </div>
     </div>
 </div>
+
 
 <ul *ngIf="showSuje" class="list-group">
     <li *ngFor="let country of countrySugList" class="list-group-item list-group-item-action">
